@@ -9,13 +9,22 @@
 /* Begin PBXBuildFile section */
 		4335621028E8A0D6007D8F88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335620F28E8A0D6007D8F88 /* AppDelegate.swift */; };
 		4335621228E8A0D6007D8F88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335621128E8A0D6007D8F88 /* SceneDelegate.swift */; };
-		4335621428E8A0D6007D8F88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335621328E8A0D6007D8F88 /* ViewController.swift */; };
 		4335621728E8A0D6007D8F88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4335621528E8A0D6007D8F88 /* Main.storyboard */; };
 		4335621928E8A0D9007D8F88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4335621828E8A0D9007D8F88 /* Assets.xcassets */; };
 		4335621C28E8A0D9007D8F88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4335621A28E8A0D9007D8F88 /* LaunchScreen.storyboard */; };
 		4335622728E8A0D9007D8F88 /* StockCheckerV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335622628E8A0D9007D8F88 /* StockCheckerV2Tests.swift */; };
 		4335623128E8A0D9007D8F88 /* StockCheckerV2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335623028E8A0D9007D8F88 /* StockCheckerV2UITests.swift */; };
 		4335623328E8A0D9007D8F88 /* StockCheckerV2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335623228E8A0D9007D8F88 /* StockCheckerV2UITestsLaunchTests.swift */; };
+		4335624428E8A133007D8F88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624328E8A133007D8F88 /* ViewController.swift */; };
+		4335624628E8A1C7007D8F88 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624528E8A1C7007D8F88 /* NetworkClient.swift */; };
+		4335624C28E8A1D1007D8F88 /* FulfilmentDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */; };
+		4335624D28E8A1D1007D8F88 /* AvailabilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */; };
+		4335624E28E8A1D1007D8F88 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */; };
+		4335624F28E8A1D1007D8F88 /* FulfilmentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */; };
+		4335625028E8A1D1007D8F88 /* AvailabilityApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */; };
+		4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625428E9CB16007D8F88 /* ResultsViewModel.swift */; };
+		4335625928E9D705007D8F88 /* WatchDogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625828E9D705007D8F88 /* WatchDogInteractor.swift */; };
+		4335625B28E9D924007D8F88 /* SpeakInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625A28E9D924007D8F88 /* SpeakInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +48,6 @@
 		4335620C28E8A0D6007D8F88 /* StockCheckerV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockCheckerV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4335620F28E8A0D6007D8F88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4335621128E8A0D6007D8F88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4335621328E8A0D6007D8F88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4335621628E8A0D6007D8F88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4335621828E8A0D9007D8F88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4335621B28E8A0D9007D8F88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +57,16 @@
 		4335622C28E8A0D9007D8F88 /* StockCheckerV2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockCheckerV2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4335623028E8A0D9007D8F88 /* StockCheckerV2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCheckerV2UITests.swift; sourceTree = "<group>"; };
 		4335623228E8A0D9007D8F88 /* StockCheckerV2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCheckerV2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4335624328E8A133007D8F88 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4335624528E8A1C7007D8F88 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfilmentDto.swift; sourceTree = "<group>"; };
+		4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityModel.swift; sourceTree = "<group>"; };
+		4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
+		4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfilmentStore.swift; sourceTree = "<group>"; };
+		4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityApiService.swift; sourceTree = "<group>"; };
+		4335625428E9CB16007D8F88 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
+		4335625828E9D705007D8F88 /* WatchDogInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDogInteractor.swift; sourceTree = "<group>"; };
+		4335625A28E9D924007D8F88 /* SpeakInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +118,11 @@
 			isa = PBXGroup;
 			children = (
 				4335620F28E8A0D6007D8F88 /* AppDelegate.swift */,
+				4335625728E9D655007D8F88 /* Interactors */,
+				4335625128E9B852007D8F88 /* Repository */,
+				4335624528E8A1C7007D8F88 /* NetworkClient.swift */,
 				4335621128E8A0D6007D8F88 /* SceneDelegate.swift */,
-				4335621328E8A0D6007D8F88 /* ViewController.swift */,
+				4335625328E9CAF8007D8F88 /* Screens */,
 				4335621528E8A0D6007D8F88 /* Main.storyboard */,
 				4335621828E8A0D9007D8F88 /* Assets.xcassets */,
 				4335621A28E8A0D9007D8F88 /* LaunchScreen.storyboard */,
@@ -125,6 +146,36 @@
 				4335623228E8A0D9007D8F88 /* StockCheckerV2UITestsLaunchTests.swift */,
 			);
 			path = StockCheckerV2UITests;
+			sourceTree = "<group>";
+		};
+		4335625128E9B852007D8F88 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */,
+				4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */,
+				4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */,
+				4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */,
+				4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		4335625328E9CAF8007D8F88 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4335624328E8A133007D8F88 /* ViewController.swift */,
+				4335625428E9CB16007D8F88 /* ResultsViewModel.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4335625728E9D655007D8F88 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				4335625828E9D705007D8F88 /* WatchDogInteractor.swift */,
+				4335625A28E9D924007D8F88 /* SpeakInteractor.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +309,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4335621428E8A0D6007D8F88 /* ViewController.swift in Sources */,
+				4335624E28E8A1D1007D8F88 /* AvailabilityRepository.swift in Sources */,
+				4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */,
+				4335624428E8A133007D8F88 /* ViewController.swift in Sources */,
 				4335621028E8A0D6007D8F88 /* AppDelegate.swift in Sources */,
+				4335624F28E8A1D1007D8F88 /* FulfilmentStore.swift in Sources */,
+				4335625928E9D705007D8F88 /* WatchDogInteractor.swift in Sources */,
+				4335625028E8A1D1007D8F88 /* AvailabilityApiService.swift in Sources */,
 				4335621228E8A0D6007D8F88 /* SceneDelegate.swift in Sources */,
+				4335624628E8A1C7007D8F88 /* NetworkClient.swift in Sources */,
+				4335624D28E8A1D1007D8F88 /* AvailabilityModel.swift in Sources */,
+				4335624C28E8A1D1007D8F88 /* FulfilmentDto.swift in Sources */,
+				4335625B28E9D924007D8F88 /* SpeakInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
