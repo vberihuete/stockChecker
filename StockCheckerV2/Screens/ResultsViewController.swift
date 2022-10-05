@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ResultsViewController.swift
 //  StockChecker
 //
 //  Created by Vincent Berihuete Paulino on 23/09/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ResultsViewController: UIViewController {
     private let viewModel = ResultsViewModel()
     private let tableView = UITableView()
 
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - TableView DataSource & Delegate
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         viewModel.numberOfSections
     }
@@ -50,11 +50,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 // MARK: - Private methods
-private extension ViewController {
+private extension ResultsViewController {
     enum Constants {
         static let cellIdentifier = "cell-model-iphone"
     }
     func setupViews() {
+        navigationItem.title = "Models Monitor"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self

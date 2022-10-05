@@ -18,6 +18,7 @@ final class ResultsViewModel {
     var notifyAvailable: (Set<AvailabilityModel>) -> Void = { _ in }
 
     func viewDidLoad() {
+        loadResults()
         scheduleFetch()
         repository.getAvailabilityHistory { history in
             print("here's the history: ")
@@ -87,18 +88,22 @@ private extension ResultsViewModel {
 
     func scheduleFetch() {
         watchDogInteractor.action = { [weak self] in
-            self?.repository.getAvailability(
-                models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128, .iPhone14Blue128],
-                postCode: "E14 6UD"
-            ) { [weak self] result in
-                guard case let .success(stores) = result else { return }
-                print("updating \(Date())")
-                self?.updateData(stores: stores)
-                self?.notifyAvailableIfNeeded(stores: stores)
-            }
+            self?.loadResults()
         }
         watchDogInteractor.start()
         speakInteractor.speak(Strings.startedWatchDog)
+    }
+
+    func loadResults() {
+        repository.getAvailability(
+            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128, .iPhone14Blue128],
+            postCode: "E14 6UD"
+        ) { [weak self] result in
+            guard case let .success(stores) = result else { return }
+            print("updating \(Date())")
+            self?.updateData(stores: stores)
+            self?.notifyAvailableIfNeeded(stores: stores)
+        }
     }
 }
 
