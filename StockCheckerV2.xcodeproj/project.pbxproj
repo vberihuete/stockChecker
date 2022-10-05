@@ -25,6 +25,8 @@
 		4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625428E9CB16007D8F88 /* ResultsViewModel.swift */; };
 		4335625928E9D705007D8F88 /* WatchDogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625828E9D705007D8F88 /* WatchDogInteractor.swift */; };
 		4335625B28E9D924007D8F88 /* SpeakInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625A28E9D924007D8F88 /* SpeakInteractor.swift */; };
+		43B23B2528EB97FA00552B6C /* AvailabilityStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */; };
+		43B2532728EDEEB500552B6C /* AvailabilityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		4335625428E9CB16007D8F88 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
 		4335625828E9D705007D8F88 /* WatchDogInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDogInteractor.swift; sourceTree = "<group>"; };
 		4335625A28E9D924007D8F88 /* SpeakInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakInteractor.swift; sourceTree = "<group>"; };
+		43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityStorageService.swift; sourceTree = "<group>"; };
+		43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityHistory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,8 @@
 				4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */,
 				4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */,
 				4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */,
+				43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */,
+				43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -313,12 +319,14 @@
 				4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */,
 				4335624428E8A133007D8F88 /* ViewController.swift in Sources */,
 				4335621028E8A0D6007D8F88 /* AppDelegate.swift in Sources */,
+				43B23B2528EB97FA00552B6C /* AvailabilityStorageService.swift in Sources */,
 				4335624F28E8A1D1007D8F88 /* FulfilmentStore.swift in Sources */,
 				4335625928E9D705007D8F88 /* WatchDogInteractor.swift in Sources */,
 				4335625028E8A1D1007D8F88 /* AvailabilityApiService.swift in Sources */,
 				4335621228E8A0D6007D8F88 /* SceneDelegate.swift in Sources */,
 				4335624628E8A1C7007D8F88 /* NetworkClient.swift in Sources */,
 				4335624D28E8A1D1007D8F88 /* AvailabilityModel.swift in Sources */,
+				43B2532728EDEEB500552B6C /* AvailabilityHistory.swift in Sources */,
 				4335624C28E8A1D1007D8F88 /* FulfilmentDto.swift in Sources */,
 				4335625B28E9D924007D8F88 /* SpeakInteractor.swift in Sources */,
 			);

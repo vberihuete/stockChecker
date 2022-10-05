@@ -19,6 +19,12 @@ final class ResultsViewModel {
 
     func viewDidLoad() {
         scheduleFetch()
+        repository.getAvailabilityHistory { history in
+            print("here's the history: ")
+            history.forEach { element in
+                print(element)
+            }
+        }
     }
 
     var numberOfSections: Int {
@@ -75,13 +81,14 @@ private extension ResultsViewModel {
         available.forEach { model in
             speakInteractor.speak(Strings.isAvailable(.init(describing: model)))
         }
+        repository.reportAvailability(models: available)
         notifyAvailable(available)
     }
 
     func scheduleFetch() {
         watchDogInteractor.action = { [weak self] in
             self?.repository.getAvailability(
-                models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
+                models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128, .iPhone14Blue128],
                 postCode: "E14 6UD"
             ) { [weak self] result in
                 guard case let .success(stores) = result else { return }

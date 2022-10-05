@@ -17,6 +17,10 @@ class ViewController: UIViewController {
         setupConstraints()
         bindViewModel()
         viewModel.viewDidLoad()
+        // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-gold [quick open]
+        // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-space-black
+        // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-silver
+        // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-deep-purple
     }
 }
 

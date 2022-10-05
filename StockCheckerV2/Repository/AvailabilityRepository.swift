@@ -13,19 +13,27 @@ protocol AvailabilityRepositoryProtocol {
         postCode: String,
         completion: @escaping (Result<[FulfilmentStore], NetworkError>) -> Void
     )
+
+    func reportAvailability(models: Set<AvailabilityModel>)
 }
 
 final class AvailabilityRepository: AvailabilityRepositoryProtocol {
     private let apiService: AvailabilityApiServiceProtocol
+    private let storageService: AvailabilityStorageServiceProtocol
 
     init(
-        apiService: AvailabilityApiServiceProtocol
+        apiService: AvailabilityApiServiceProtocol,
+        storageService: AvailabilityStorageServiceProtocol
     ) {
         self.apiService = apiService
+        self.storageService = storageService
     }
 
     convenience init() {
-        self.init(apiService: AvailabilityApiService(networkClient: NetworkClient()))
+        self.init(
+            apiService: AvailabilityApiService(networkClient: NetworkClient()),
+            storageService: AvailabilityStorageService()
+        )
     }
 
     func getAvailability(
@@ -36,5 +44,13 @@ final class AvailabilityRepository: AvailabilityRepositoryProtocol {
         apiService.getAvailability(models: models.map(\.rawValue), postCode: postCode) {
             completion($0.map { $0.body.content.pickupMessage.stores.map { $0.toDomain() }} )
         }
+    }
+
+    func reportAvailability(models: Set<AvailabilityModel>) {
+        storageService.persistAvailableModel(models, completion: {})
+    }
+
+    func getAvailabilityHistory(completion: @escaping ([AvailabilityHistory]) -> Void) {
+        storageService.getAvailabilityHistory { completion($0.compactMap { $0.toDomain() }) }
     }
 }
