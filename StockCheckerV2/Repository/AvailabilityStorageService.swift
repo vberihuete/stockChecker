@@ -10,15 +10,17 @@ import Foundation
 protocol AvailabilityStorageServiceProtocol {
     func persistAvailableModel(_ models: Set<AvailabilityModel>, completion: @escaping () -> Void) 
     func getAvailabilityHistory(completion: @escaping ([AvailabilityHistoryStoreDto]) -> Void)
+    func clearHistory(completion: @escaping () -> Void)
 }
 
 final class AvailabilityStorageService: AvailabilityStorageServiceProtocol {
     private enum Constants {
         static let availableKey = "Available-array-key"
     }
+    private let storageQueue = DispatchQueue(label: "AvailabilityStorageService-queue")
 
     func persistAvailableModel(_ models: Set<AvailabilityModel>, completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        storageQueue.async { [weak self] in
             guard let self = self else { return }
             var current = self.decode(data: UserDefaults.standard.data(forKey: Constants.availableKey))
             let historyModels: [AvailabilityHistoryStoreDto] = models.map { .init(availableRawValue: $0.rawValue, date: .init())}
@@ -33,11 +35,18 @@ final class AvailabilityStorageService: AvailabilityStorageServiceProtocol {
     }
 
     func getAvailabilityHistory(completion: @escaping ([AvailabilityHistoryStoreDto]) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        storageQueue.async { [weak self] in
             let result = self?.decode(data: UserDefaults.standard.data(forKey: Constants.availableKey)) ?? []
             DispatchQueue.main.async {
                 completion(result)
             }
+        }
+    }
+
+    func clearHistory(completion: @escaping () -> Void) {
+        storageQueue.async {
+            UserDefaults.standard.removeObject(forKey: Constants.availableKey)
+            DispatchQueue.main.async(execute: completion)
         }
     }
 }

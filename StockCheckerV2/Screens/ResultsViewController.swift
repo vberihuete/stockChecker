@@ -35,13 +35,14 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath)
-        let model = viewModel.model(at: indexPath)
-        var config = cell.defaultContentConfiguration()
-        config.text = model.title
-        config.secondaryText = model.subtitle
-        cell.backgroundColor = model.color
-        cell.contentConfiguration  = config
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: AvailableResultCell.identifier, for: indexPath) as? AvailableResultCell,
+            let model = viewModel.model(at: indexPath)
+        else {
+            return UITableViewCell()
+        }
+
+        cell.update(model: model)
         return cell
     }
 
@@ -51,24 +52,17 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 // MARK: - Private methods
 private extension ResultsViewController {
-    enum Constants {
-        static let cellIdentifier = "cell-model-iphone"
-    }
     func setupViews() {
         navigationItem.title = "Models Monitor"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellIdentifier)
+        tableView.register(AvailableResultCell.self, forCellReuseIdentifier: AvailableResultCell.identifier)
     }
 
     func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.pinToSuperview()
     }
 
     func bindViewModel() {

@@ -9,6 +9,7 @@ import Foundation
 
 struct FulfilmentStore: Equatable {
     let storeName: String
+    let storeDistance: String
     let rank: Int
     let parts: [FulfilmentStorePart]
 

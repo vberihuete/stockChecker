@@ -25,6 +25,7 @@ struct FulfilmentPickupMessageDto: Decodable {
 
 struct FulfilmentStoreDto: Decodable {
     let storeName: String
+    let storeDistanceWithUnit: String
     let rank: Int
     let partsAvailability: FulfilmentStorePartDtoContainer
 }
@@ -75,6 +76,7 @@ extension FulfilmentStoreDto {
     func toDomain() -> FulfilmentStore {
         .init(
             storeName: storeName,
+            storeDistance: storeDistanceWithUnit,
             rank: rank,
             parts: partsAvailability.parts.map {
                 FulfilmentStore.FulfilmentStorePart(

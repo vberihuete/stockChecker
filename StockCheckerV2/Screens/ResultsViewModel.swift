@@ -36,8 +36,14 @@ final class ResultsViewModel {
         elements.count
     }
 
-    func model(at indexPath: IndexPath) -> CellDisplayModel {
-        elements[indexPath.row]
+    func model(at indexPath: IndexPath) -> AvailableResultCell.Model? {
+        guard let element = elements[safe: indexPath.row] else { return nil }
+        return .init(
+            title: element.title,
+            subtitle: element.subtitle,
+            indicatorColor: element.color,
+            distanceTitle: element.distance
+        )
     }
 
     func toggleWatchDog() {
@@ -64,7 +70,13 @@ private extension ResultsViewModel {
         elements = []
         stores.forEach { store in
             store.parts.forEach { part in
-                elements.append(.init(title: String(describing: part.model), subtitle: store.storeName, available: part.available))
+                elements.append(
+                    .init(
+                        title: String(describing: part.model),
+                        subtitle: store.storeName,
+                        distance: store.storeDistance,
+                        available: part.available)
+                )
             }
         }
         elements.sort { lhs, rhs in
@@ -96,7 +108,7 @@ private extension ResultsViewModel {
 
     func loadResults() {
         repository.getAvailability(
-            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128, .iPhone14Blue128],
+            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
             postCode: "E14 6UD"
         ) { [weak self] result in
             guard case let .success(stores) = result else { return }
@@ -113,9 +125,16 @@ private extension ResultsViewModel {
 struct CellDisplayModel {
     let title: String
     let subtitle: String
+    let distance: String
     let available: Bool
 
     var color: UIColor {
-        (available ? UIColor.green : UIColor.red).withAlphaComponent(0.2)
+        (available ? UIColor.green : UIColor.red).withAlphaComponent(0.7)
+    }
+}
+
+public extension Collection {
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }

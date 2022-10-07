@@ -53,4 +53,8 @@ final class AvailabilityRepository: AvailabilityRepositoryProtocol {
     func getAvailabilityHistory(completion: @escaping ([AvailabilityHistory]) -> Void) {
         storageService.getAvailabilityHistory { completion($0.compactMap { $0.toDomain() }) }
     }
+
+    func clearAvailabilityHistory(completion: @escaping () -> Void) {
+        storageService.clearHistory(completion: completion)
+    }
 }
