@@ -10,6 +10,7 @@ import UIKit
 class ResultsViewController: UIViewController {
     private let viewModel = ResultsViewModel()
     private let tableView = UITableView()
+    private let infoView = InfoView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,13 +57,19 @@ private extension ResultsViewController {
         navigationItem.title = "Models Monitor"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.addSubview(tableView)
+        view.addSubview(infoView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AvailableResultCell.self, forCellReuseIdentifier: AvailableResultCell.identifier)
+        tableView.contentInset = .init(top: 30, left: 0, bottom: 0, right: 0)
     }
 
     func setupConstraints() {
         tableView.pinToSuperview()
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        infoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        infoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        infoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -4).isActive = true
     }
 
     func bindViewModel() {
@@ -74,6 +81,12 @@ private extension ResultsViewController {
 
         viewModel.notifyAvailable = { models in
             print("found available: \(models)")
+        }
+
+        viewModel.updateInfo = { [infoView] info in
+            DispatchQueue.main.async {
+                infoView.update(info: info)
+            }
         }
     }
 }

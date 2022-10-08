@@ -12,10 +12,17 @@ final class ResultsViewModel {
     private let repository = AvailabilityRepository()
     private let speakInteractor = SpeakInteractor()
     private let watchDogInteractor = WatchDogInteractor(interval: 10)
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        return formatter
+    }()
 
     var elements: [CellDisplayModel] = []
     var reloadData: () -> Void = {}
     var notifyAvailable: (Set<AvailabilityModel>) -> Void = { _ in }
+    var updateInfo: (String) -> Void = { _ in }
 
     func viewDidLoad() {
         loadResults()
@@ -62,6 +69,9 @@ private extension ResultsViewModel {
     enum Strings {
         static func isAvailable(_ value: String) -> String {
             "\(value) is available"
+        }
+        static func lastUpdated(_ value: String) -> String {
+            "Last updated: \(value)"
         }
         static var stoppedWatchDog: String = "Stopped watch dog"
         static var startedWatchDog: String = "Started watch dog"
@@ -110,9 +120,10 @@ private extension ResultsViewModel {
         repository.getAvailability(
             models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
             postCode: "E14 6UD"
-        ) { [weak self] result in
+        ) { [weak self, dateFormatter] result in
             guard case let .success(stores) = result else { return }
-            print("updating \(Date())")
+            let updatedDate = dateFormatter.string(from: Date())
+            self?.updateInfo(Strings.lastUpdated(updatedDate))
             self?.updateData(stores: stores)
             self?.notifyAvailableIfNeeded(stores: stores)
         }

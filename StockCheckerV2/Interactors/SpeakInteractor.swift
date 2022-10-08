@@ -8,11 +8,11 @@
 import AVFoundation
 
 final class SpeakInteractor {
-
+    private let synthesizer = AVSpeechSynthesizer()
     func speak(_ value: String) {
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
         let utterance = AVSpeechUtterance(string: value)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)
     }
 }
