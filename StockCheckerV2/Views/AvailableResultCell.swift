@@ -46,6 +46,7 @@ private extension AvailableResultCell {
         distanceContainer.axis = .vertical
         distanceContainer.alignment = .trailing
         container.axis = .horizontal
+        container.spacing = 8
         leftContent.axis = .vertical
         leftContent.spacing = 8
         rightContent.axis = .vertical
@@ -60,6 +61,8 @@ private extension AvailableResultCell {
 
         title.font = UIFont.systemFont(ofSize: 18)
         subtitle.font = UIFont.systemFont(ofSize: 14)
+        subtitle
+            .numberOfLines = 0
         subtitle.textColor = .gray
         // right container
         rightContent.addArrangedSubview(distanceContainer)

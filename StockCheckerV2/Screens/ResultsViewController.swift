@@ -72,9 +72,6 @@ private extension ResultsViewController {
             }
             navigationItem.rightBarButtonItems = [historyButton]
         }
-
-//        historyButton.setBackgroundImage(UIImage(named: "history_nav_bar"), for: .normal, barMetrics: .default)
-//        historyButton.tintColor = .label
     }
 
     func setupConstraints() {
@@ -105,6 +102,6 @@ private extension ResultsViewController {
 
     @objc func historyButtonAction() {
         let historyController = HistoryViewController()
-        navigationController?.present(historyController, animated: true)
+        navigationController?.present(UINavigationController(rootViewController: historyController), animated: true)
     }
 }

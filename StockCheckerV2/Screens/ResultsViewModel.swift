@@ -27,12 +27,6 @@ final class ResultsViewModel {
     func viewDidLoad() {
         loadResults()
         scheduleFetch()
-        repository.getAvailabilityHistory { history in
-            print("here's the history: ")
-            history.forEach { element in
-                print(element)
-            }
-        }
     }
 
     var numberOfSections: Int {
