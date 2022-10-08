@@ -27,6 +27,7 @@
 		4363360C28F182C200E373F5 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363360B28F182C200E373F5 /* InfoView.swift */; };
 		4363360E28F18B1300E373F5 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363360D28F18B1300E373F5 /* HistoryViewController.swift */; };
 		4363361028F1E95600E373F5 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363360F28F1E95600E373F5 /* HistoryViewModel.swift */; };
+		4363361228F1F04000E373F5 /* UIBarButtonItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363361128F1F04000E373F5 /* UIBarButtonItem+extension.swift */; };
 		43B23B2528EB97FA00552B6C /* AvailabilityStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */; };
 		43B2532728EDEEB500552B6C /* AvailabilityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */; };
 		43B2532A28EDF74E00552B6C /* AvailableResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532928EDF74E00552B6C /* AvailableResultCell.swift */; };
@@ -76,6 +77,7 @@
 		4363360B28F182C200E373F5 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		4363360D28F18B1300E373F5 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4363360F28F1E95600E373F5 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		4363361128F1F04000E373F5 /* UIBarButtonItem+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+extension.swift"; sourceTree = "<group>"; };
 		43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityStorageService.swift; sourceTree = "<group>"; };
 		43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityHistory.swift; sourceTree = "<group>"; };
 		43B2532928EDF74E00552B6C /* AvailableResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableResultCell.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				43B2532928EDF74E00552B6C /* AvailableResultCell.swift */,
 				43B2532D28EEE76400552B6C /* CellProtocol.swift */,
 				4363360B28F182C200E373F5 /* InfoView.swift */,
+				4363361128F1F04000E373F5 /* UIBarButtonItem+extension.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4335624E28E8A1D1007D8F88 /* AvailabilityRepository.swift in Sources */,
+				4363361228F1F04000E373F5 /* UIBarButtonItem+extension.swift in Sources */,
 				4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */,
 				4335624428E8A133007D8F88 /* ResultsViewController.swift in Sources */,
 				43B2532A28EDF74E00552B6C /* AvailableResultCell.swift in Sources */,

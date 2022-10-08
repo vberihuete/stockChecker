@@ -66,9 +66,15 @@ private extension ResultsViewController {
     func setupNavigationBar() {
         navigationItem.title = "Models Monitor"
         navigationController?.navigationBar.prefersLargeTitles = true
-        let historyButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(Self.historyButtonAction))
-        historyButton.tintColor = .label
-        navigationItem.rightBarButtonItems = [historyButton]
+        if let historyImage = UIImage(named: "history_nav_bar") {
+            let historyButton = UIBarButtonItem.imageButton(image: historyImage, color: .label) { [weak self] in
+                self?.historyButtonAction()
+            }
+            navigationItem.rightBarButtonItems = [historyButton]
+        }
+
+//        historyButton.setBackgroundImage(UIImage(named: "history_nav_bar"), for: .normal, barMetrics: .default)
+//        historyButton.tintColor = .label
     }
 
     func setupConstraints() {
