@@ -99,13 +99,19 @@ private extension ResultsViewModel {
     }
 
     func notifyAvailableIfNeeded(stores: [FulfilmentStore]) {
-        let available = Set(stores.flatMap { $0.parts.compactMap { $0.available ? $0.model : nil } })
+        let available: [AvailabilityHistory] = stores.flatMap { store in
+            store.parts.compactMap { part in
+                guard part.available else { return nil }
+                return .init(model: part.model, storeName: store.storeName, distance: store.storeDistance, date: .init())
+            }
+        }
         guard available.isEmpty == false else { return }
-        available.forEach { model in
+        let availableModels = available.map(\.model)
+        availableModels.forEach { model in
             speakInteractor.speak(Strings.isAvailable(.init(describing: model)))
         }
-        repository.reportAvailability(models: available)
-        notifyAvailable(available)
+        repository.reportAvailability(historyModels: available)
+        notifyAvailable(Set(availableModels))
     }
 
     func scheduleFetch() {

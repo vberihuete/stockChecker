@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct AvailabilityHistory: Equatable {
+struct AvailabilityHistory: Hashable {
     let model: AvailabilityModel
+    let storeName: String
+    let distance: String
     let date: Date
 }

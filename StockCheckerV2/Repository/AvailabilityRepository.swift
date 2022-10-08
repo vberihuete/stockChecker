@@ -14,7 +14,7 @@ protocol AvailabilityRepositoryProtocol {
         completion: @escaping (Result<[FulfilmentStore], NetworkError>) -> Void
     )
 
-    func reportAvailability(models: Set<AvailabilityModel>)
+    func reportAvailability(historyModels: [AvailabilityHistory])
 }
 
 final class AvailabilityRepository: AvailabilityRepositoryProtocol {
@@ -46,8 +46,11 @@ final class AvailabilityRepository: AvailabilityRepositoryProtocol {
         }
     }
 
-    func reportAvailability(models: Set<AvailabilityModel>) {
-        storageService.persistAvailableModel(models, completion: {})
+    func reportAvailability(historyModels: [AvailabilityHistory]) {
+        storageService.persistAvailableModel(
+            historyModels.map { AvailabilityHistoryStoreDto(object: $0) },
+            completion: {}
+        )
     }
 
     func getAvailabilityHistory(completion: @escaping ([AvailabilityHistory]) -> Void) {

@@ -54,8 +54,7 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Private methods
 private extension ResultsViewController {
     func setupViews() {
-        navigationItem.title = "Models Monitor"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        setupNavigationBar()
         view.addSubview(tableView)
         view.addSubview(infoView)
         tableView.dataSource = self
@@ -64,12 +63,20 @@ private extension ResultsViewController {
         tableView.contentInset = .init(top: 30, left: 0, bottom: 0, right: 0)
     }
 
+    func setupNavigationBar() {
+        navigationItem.title = "Models Monitor"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let historyButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(Self.historyButtonAction))
+        historyButton.tintColor = .label
+        navigationItem.rightBarButtonItems = [historyButton]
+    }
+
     func setupConstraints() {
         tableView.pinToSuperview()
         infoView.translatesAutoresizingMaskIntoConstraints = false
         infoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        infoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        infoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -4).isActive = true
+        infoView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+        infoView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
     }
 
     func bindViewModel() {
@@ -88,5 +95,10 @@ private extension ResultsViewController {
                 infoView.update(info: info)
             }
         }
+    }
+
+    @objc func historyButtonAction() {
+        let historyController = HistoryViewController()
+        navigationController?.present(historyController, animated: true)
     }
 }

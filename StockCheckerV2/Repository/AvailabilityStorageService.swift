@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AvailabilityStorageServiceProtocol {
-    func persistAvailableModel(_ models: Set<AvailabilityModel>, completion: @escaping () -> Void) 
+    func persistAvailableModel(_ historyModels: [AvailabilityHistoryStoreDto], completion: @escaping () -> Void)
     func getAvailabilityHistory(completion: @escaping ([AvailabilityHistoryStoreDto]) -> Void)
     func clearHistory(completion: @escaping () -> Void)
 }
@@ -19,11 +19,10 @@ final class AvailabilityStorageService: AvailabilityStorageServiceProtocol {
     }
     private let storageQueue = DispatchQueue(label: "AvailabilityStorageService-queue")
 
-    func persistAvailableModel(_ models: Set<AvailabilityModel>, completion: @escaping () -> Void) {
+    func persistAvailableModel(_ historyModels: [AvailabilityHistoryStoreDto], completion: @escaping () -> Void) {
         storageQueue.async { [weak self] in
             guard let self = self else { return }
             var current = self.decode(data: UserDefaults.standard.data(forKey: Constants.availableKey))
-            let historyModels: [AvailabilityHistoryStoreDto] = models.map { .init(availableRawValue: $0.rawValue, date: .init())}
             if current.isEmpty {
                 current.append(contentsOf: historyModels)
             } else {
@@ -73,12 +72,23 @@ private extension AvailabilityStorageService {
         return result
     }
 }
-struct AvailabilityHistoryStoreDto: Codable {
+struct AvailabilityHistoryStoreDto: Codable, Hashable {
     let availableRawValue: String
+    let storeName: String
+    let distance: String
     let date: Date
 
     func toDomain() -> AvailabilityHistory? {
         guard let model = AvailabilityModel(rawValue: availableRawValue) else { return nil }
-        return .init(model: model, date: date)
+        return .init(model: model, storeName: storeName, distance: distance, date: date)
+    }
+}
+
+extension AvailabilityHistoryStoreDto {
+    init(object: AvailabilityHistory) {
+        self.availableRawValue = object.model.rawValue
+        self.storeName = object.storeName
+        self.distance = object.distance
+        self.date = object.date
     }
 }
