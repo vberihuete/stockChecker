@@ -16,6 +16,7 @@ protocol AvailabilityStorageServiceProtocol {
 final class AvailabilityStorageService: AvailabilityStorageServiceProtocol {
     private enum Constants {
         static let availableKey = "Available-array-key"
+        static let historyLimit = 100
     }
     private let storageQueue = DispatchQueue(label: "AvailabilityStorageService-queue")
 
@@ -23,6 +24,7 @@ final class AvailabilityStorageService: AvailabilityStorageServiceProtocol {
         storageQueue.async { [weak self] in
             guard let self = self else { return }
             var current = self.decode(data: UserDefaults.standard.data(forKey: Constants.availableKey))
+            current = Array(current.prefix(Constants.historyLimit - historyModels.count))
             if current.isEmpty {
                 current.append(contentsOf: historyModels)
             } else {
