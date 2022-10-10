@@ -11,6 +11,7 @@ import UIKit
 class HistoryViewController: UIViewController {
     private let viewModel = HistoryViewModel()
     private let tableView = UITableView()
+    private let emptyMessageView = AnimatedMessageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +48,17 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
 private extension HistoryViewController {
     func setupViews() {
         setupNavigationBar()
+        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
+        view.addSubview(emptyMessageView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AvailableResultCell.self, forCellReuseIdentifier: AvailableResultCell.identifier)
-        tableView.contentInset = .init(top: 30, left: 0, bottom: 0, right: 0)
+        emptyMessageView.update(
+            animationName: WatchDogAnimation.walkingDog,
+            title: "We haven't found any of your models yet!",
+            subtitle: "Make sure you keep the app open and your internet connection is working"
+        )
     }
 
     func setupNavigationBar() {
@@ -61,12 +68,22 @@ private extension HistoryViewController {
 
     func setupConstraints() {
         tableView.pinToSuperview()
+        emptyMessageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                emptyMessageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+                emptyMessageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                emptyMessageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+            ]
+        )
     }
 
     func bindViewModel() {
-        viewModel.reloadData = { [tableView] in
+        viewModel.reloadData = { [tableView, emptyMessageView, viewModel] in
             DispatchQueue.main.async {
                 tableView.reloadData()
+                    tableView.isHidden = viewModel.elements.isEmpty
+                    emptyMessageView.isHidden = !viewModel.elements.isEmpty
             }
         }
     }

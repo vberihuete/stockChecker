@@ -11,6 +11,7 @@ class ResultsViewController: UIViewController {
     private let viewModel = ResultsViewModel()
     private let tableView = UITableView()
     private let infoView = InfoView()
+    private let emptyMessageView = AnimatedMessageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +58,16 @@ private extension ResultsViewController {
         setupNavigationBar()
         view.addSubview(tableView)
         view.addSubview(infoView)
+        view.addSubview(emptyMessageView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AvailableResultCell.self, forCellReuseIdentifier: AvailableResultCell.identifier)
         tableView.contentInset = .init(top: 30, left: 0, bottom: 0, right: 0)
+        emptyMessageView.update(
+            animationName: WatchDogAnimation.walkingDog,
+            title: "We are looking for you desired models",
+            subtitle: "Make sure you keep the app open and your internet connection is working"
+        )
     }
 
     func setupNavigationBar() {
@@ -80,12 +87,23 @@ private extension ResultsViewController {
         infoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         infoView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
         infoView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+        emptyMessageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                emptyMessageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+                emptyMessageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                emptyMessageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+            ]
+        )
     }
 
     func bindViewModel() {
-        viewModel.reloadData = { [tableView] in
+        viewModel.reloadData = { [tableView, emptyMessageView, infoView, viewModel] in
             DispatchQueue.main.async {
                 tableView.reloadData()
+                tableView.isHidden = viewModel.elements.isEmpty
+                infoView.isHidden = viewModel.elements.isEmpty
+                emptyMessageView.isHidden = !viewModel.elements.isEmpty
             }
         }
 

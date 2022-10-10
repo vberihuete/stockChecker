@@ -61,8 +61,7 @@ private extension AvailableResultCell {
 
         title.font = UIFont.systemFont(ofSize: 18)
         subtitle.font = UIFont.systemFont(ofSize: 14)
-        subtitle
-            .numberOfLines = 0
+        subtitle.numberOfLines = 0
         subtitle.textColor = .gray
         // right container
         rightContent.addArrangedSubview(distanceContainer)

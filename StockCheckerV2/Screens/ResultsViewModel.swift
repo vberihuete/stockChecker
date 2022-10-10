@@ -118,7 +118,7 @@ private extension ResultsViewModel {
 
     func loadResults() {
         repository.getAvailability(
-            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
+            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128, .iPhone14Blue128],
             postCode: "E14 6UD"
         ) { [weak self, dateFormatter] result in
             guard case let .success(stores) = result else { return }
