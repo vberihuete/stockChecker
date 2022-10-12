@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 final class ResultsViewModel {
-    private let repository = AvailabilityRepository()
+    private let availabilityRepository = AvailabilityRepository()
+    private let configRepository = ConfigRepository()
     private let speakInteractor = SpeakInteractor()
     private let watchDogInteractor = WatchDogInteractor(interval: 10)
     private let dateFormatter: DateFormatter = {
@@ -22,11 +23,18 @@ final class ResultsViewModel {
     var elements: [CellDisplayModel] = []
     var reloadData: () -> Void = {}
     var notifyAvailable: (Set<AvailabilityModel>) -> Void = { _ in }
+    var requestConfigScreen: () -> Void = {}
     var updateInfo: (String) -> Void = { _ in }
 
     func viewDidLoad() {
         loadResults()
         scheduleFetch()
+    }
+
+    func viewDidAppear() {
+        if configRepository.getPostCode() == nil {
+            requestConfigScreen()
+        }
     }
 
     var numberOfSections: Int {
@@ -54,6 +62,19 @@ final class ResultsViewModel {
         } else {
             watchDogInteractor.start()
             speakInteractor.speak(Strings.startedWatchDog)
+        }
+    }
+
+    func loadResults() {
+        availabilityRepository.getAvailability(
+            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
+            postCode: configRepository.getPostCode() ?? "E14 6UD"
+        ) { [weak self, dateFormatter] result in
+            guard case let .success(stores) = result else { return }
+            let updatedDate = dateFormatter.string(from: Date())
+            self?.updateInfo(Strings.lastUpdated(updatedDate))
+            self?.updateData(stores: stores)
+            self?.notifyAvailableIfNeeded(stores: stores)
         }
     }
 }
@@ -104,7 +125,7 @@ private extension ResultsViewModel {
         availableModels.forEach { model in
             speakInteractor.speak(Strings.isAvailable(.init(describing: model)))
         }
-        repository.reportAvailability(historyModels: available)
+        availabilityRepository.reportAvailability(historyModels: available)
         notifyAvailable(Set(availableModels))
     }
 
@@ -114,19 +135,6 @@ private extension ResultsViewModel {
         }
         watchDogInteractor.start()
         speakInteractor.speak(Strings.startedWatchDog)
-    }
-
-    func loadResults() {
-        repository.getAvailability(
-            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
-            postCode: "E14 6UD"
-        ) { [weak self, dateFormatter] result in
-            guard case let .success(stores) = result else { return }
-            let updatedDate = dateFormatter.string(from: Date())
-            self?.updateInfo(Strings.lastUpdated(updatedDate))
-            self?.updateData(stores: stores)
-            self?.notifyAvailableIfNeeded(stores: stores)
-        }
     }
 }
 

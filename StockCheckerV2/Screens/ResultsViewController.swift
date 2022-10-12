@@ -24,6 +24,11 @@ class ResultsViewController: UIViewController {
         // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-silver
         // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-deep-purple
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.viewDidAppear()
+    }
 }
 
 // MARK: - TableView DataSource & Delegate
@@ -115,6 +120,16 @@ private extension ResultsViewController {
             DispatchQueue.main.async {
                 infoView.update(info: info)
             }
+        }
+        viewModel.requestConfigScreen = { [weak self] in
+            let viewModel = ConfigViewModel { action in
+                switch action {
+                case .reload:
+                    self?.viewModel.loadResults()
+                }
+            }
+            let controller = UINavigationController(rootViewController: ConfigViewController(viewModel: viewModel))
+            self?.navigationController?.present(controller, animated: true)
         }
     }
 
