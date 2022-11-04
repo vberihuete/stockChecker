@@ -1,14 +1,14 @@
 //
-//  ConfigViewController.swift
+//  InputViewController.swift
 //  StockCheckerV2
 //
-//  Created by Vincent Berihuete Paulino on 12/10/2022.
+//  Created by Vincent Berihuete Paulino on 15/10/2022.
 //
 
 import Foundation
 import UIKit
 
-final class ConfigViewController: UIViewController {
+final class InputViewController: UIViewController {
     private let viewModel: ConfigViewModel
     private let container = UIStackView()
     private let titleMessage = AnimatedMessageView()
@@ -32,7 +32,7 @@ final class ConfigViewController: UIViewController {
     }
 }
 
-private extension ConfigViewController {
+private extension InputViewController {
     func setupHierarchy() {
         container.addArrangedSubview(titleMessage)
         container.addArrangedSubview(continueButton)
@@ -68,7 +68,6 @@ private extension ConfigViewController {
     }
 
     func setupNavigationBar() {
-//        navigationItem.title = "Configure what"
-//        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-}
+        //        navigationItem.title = "Configure what"
+        //        navigationController?.navigationBar.prefersLargeTitles = true
+        }
