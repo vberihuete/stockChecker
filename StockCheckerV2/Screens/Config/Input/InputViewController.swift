@@ -68,6 +68,5 @@ private extension InputViewController {
     }
 
     func setupNavigationBar() {
-        //        navigationItem.title = "Configure what"
-        //        navigationController?.navigationBar.prefersLargeTitles = true
-        }
+    }
+}
