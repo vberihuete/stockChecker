@@ -38,7 +38,7 @@ final class AvailabilityApiService: AvailabilityApiServiceProtocol {
             params["parts.\(index)"] = model
         }
         networkClient.request(
-            url: "https://www.apple.com/uk/shop/fulfillment-messages",
+            url: "https://www.apple.com/us/shop/fulfillment-messages",
             method: .get,
             params: .query(params),
             completion: completion
