@@ -118,8 +118,8 @@ private extension ResultsViewModel {
 
     func loadResults() {
         repository.getAvailability(
-            models: [.iPhone14ProMaxBlack128, .iPhone14ProMaxSilver128, .iPhone14ProMaxGold128],
-            postCode: "E14 6UD"
+            models: [.iPhone15ProMaxBlack256, .iPhone15ProMaxBlue256, .iPhone15ProMaxNatural256],
+            postCode: "33401"
         ) { [weak self, dateFormatter] result in
             guard case let .success(stores) = result else { return }
             let updatedDate = dateFormatter.string(from: Date())
