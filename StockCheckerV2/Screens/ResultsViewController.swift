@@ -24,6 +24,18 @@ class ResultsViewController: UIViewController {
         // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-silver
         // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-deep-purple
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        subscribeToNotification()
+        let zipCode = UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey)
+        if zipCode?.isEmpty == true {
+            settingsButtonAction()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        unsubscribeFromNotification()
+    }
 }
 
 // MARK: - TableView DataSource & Delegate
@@ -79,6 +91,12 @@ private extension ResultsViewController {
             }
             navigationItem.rightBarButtonItems = [historyButton]
         }
+        if let settingsImage = UIImage(named: "gear_nav_bar") {
+            let settingsButton = UIBarButtonItem.imageButton(image: settingsImage, color: .label) { [weak self] in
+                self?.settingsButtonAction()
+            }
+            navigationItem.rightBarButtonItems?.append(settingsButton)
+        }
     }
 
     func setupConstraints() {
@@ -121,5 +139,22 @@ private extension ResultsViewController {
     @objc func historyButtonAction() {
         let historyController = HistoryViewController()
         navigationController?.present(UINavigationController(rootViewController: historyController), animated: true)
+    }
+
+    func settingsButtonAction() {
+        let configurationController = ConfigurationViewController()
+        navigationController?.present(UINavigationController(rootViewController: configurationController), animated: true)
+    }
+
+    private func subscribeToNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleConfigurationTextChange), name: .configurationTextChanged, object: nil)
+    }
+
+    private func unsubscribeFromNotification() {
+        NotificationCenter.default.removeObserver(self, name: .configurationTextChanged, object: nil)
+    }
+
+    @objc private func handleConfigurationTextChange() {
+        viewModel.configurationChanged()
     }
 }

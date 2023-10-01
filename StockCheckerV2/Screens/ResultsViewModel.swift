@@ -23,6 +23,9 @@ final class ResultsViewModel {
     var reloadData: () -> Void = {}
     var notifyAvailable: (Set<AvailabilityModel>) -> Void = { _ in }
     var updateInfo: (String) -> Void = { _ in }
+    var zipCode: String? {
+        UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey)
+    }
 
     func viewDidLoad() {
         loadResults()
@@ -55,6 +58,10 @@ final class ResultsViewModel {
             watchDogInteractor.start()
             speakInteractor.speak(Strings.startedWatchDog)
         }
+    }
+
+    func configurationChanged() {
+        loadResults()
     }
 }
 
@@ -117,9 +124,10 @@ private extension ResultsViewModel {
     }
 
     func loadResults() {
+        guard let zipCode else { return }
         repository.getAvailability(
             models: [.iPhone15ProMaxBlack256, .iPhone15ProMaxBlue256, .iPhone15ProMaxNatural256],
-            postCode: "33401"
+            postCode: zipCode
         ) { [weak self, dateFormatter] result in
             guard case let .success(stores) = result else { return }
             let updatedDate = dateFormatter.string(from: Date())
