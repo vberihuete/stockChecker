@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 final class ResultsViewModel {
-    private let repository = AvailabilityRepository()
+    private let availabilityRepository = AvailabilityRepository()
+    private let deviceRepository = DeviceRepository()
     private let speakInteractor = SpeakInteractor()
     private let watchDogInteractor = WatchDogInteractor(interval: 10)
     private let dateFormatter: DateFormatter = {
@@ -111,7 +112,7 @@ private extension ResultsViewModel {
         availableModels.forEach { model in
             speakInteractor.speak(Strings.isAvailable(.init(describing: model)))
         }
-        repository.reportAvailability(historyModels: available)
+        availabilityRepository.reportAvailability(historyModels: available)
         notifyAvailable(Set(availableModels))
     }
 
@@ -125,7 +126,7 @@ private extension ResultsViewModel {
 
     func loadResults() {
         guard let zipCode else { return }
-        repository.getAvailability(
+        availabilityRepository.getAvailability(
             models: [.iPhone15ProMaxBlack256, .iPhone15ProMaxBlue256, .iPhone15ProMaxNatural256],
             postCode: zipCode
         ) { [weak self, dateFormatter] result in

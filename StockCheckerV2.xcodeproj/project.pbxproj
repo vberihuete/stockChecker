@@ -34,6 +34,12 @@
 		4363361728F2D7FA00E373F5 /* AnimatedMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363361628F2D7FA00E373F5 /* AnimatedMessageView.swift */; };
 		4363361928F2D85E00E373F5 /* dog-walking.json in Resources */ = {isa = PBXBuildFile; fileRef = 4363361828F2D85E00E373F5 /* dog-walking.json */; };
 		4363361C28F2DC0600E373F5 /* WatchDogAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363361B28F2DC0600E373F5 /* WatchDogAnimation.swift */; };
+		438A60FD2AD4F3B2008A6E81 /* DeviceApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438A60FC2AD4F3B2008A6E81 /* DeviceApiService.swift */; };
+		438A60FF2AD4F3BB008A6E81 /* DeviceDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438A60FE2AD4F3BB008A6E81 /* DeviceDto.swift */; };
+		438A61012AD4F53F008A6E81 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438A61002AD4F53F008A6E81 /* DeviceRepository.swift */; };
+		438A61032AD4F5D0008A6E81 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438A61022AD4F5D0008A6E81 /* Device.swift */; };
+		438A61052AD4F68C008A6E81 /* DeviceStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438A61042AD4F68C008A6E81 /* DeviceStorageService.swift */; };
+		438A61072AD4F956008A6E81 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438A61062AD4F956008A6E81 /* Region.swift */; };
 		43B23B2528EB97FA00552B6C /* AvailabilityStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */; };
 		43B2532728EDEEB500552B6C /* AvailabilityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */; };
 		43B2532A28EDF74E00552B6C /* AvailableResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532928EDF74E00552B6C /* AvailableResultCell.swift */; };
@@ -89,6 +95,12 @@
 		4363361628F2D7FA00E373F5 /* AnimatedMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMessageView.swift; sourceTree = "<group>"; };
 		4363361828F2D85E00E373F5 /* dog-walking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dog-walking.json"; sourceTree = "<group>"; };
 		4363361B28F2DC0600E373F5 /* WatchDogAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDogAnimation.swift; sourceTree = "<group>"; };
+		438A60FC2AD4F3B2008A6E81 /* DeviceApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceApiService.swift; sourceTree = "<group>"; };
+		438A60FE2AD4F3BB008A6E81 /* DeviceDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDto.swift; sourceTree = "<group>"; };
+		438A61002AD4F53F008A6E81 /* DeviceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRepository.swift; sourceTree = "<group>"; };
+		438A61022AD4F5D0008A6E81 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		438A61042AD4F68C008A6E81 /* DeviceStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStorageService.swift; sourceTree = "<group>"; };
+		438A61062AD4F956008A6E81 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityStorageService.swift; sourceTree = "<group>"; };
 		43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityHistory.swift; sourceTree = "<group>"; };
 		43B2532928EDF74E00552B6C /* AvailableResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableResultCell.swift; sourceTree = "<group>"; };
@@ -191,6 +203,7 @@
 		4335625128E9B852007D8F88 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				438A60FB2AD4F3A0008A6E81 /* Devices */,
 				4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */,
 				4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */,
 				4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */,
@@ -198,6 +211,7 @@
 				4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */,
 				43B23B2428EB97FA00552B6C /* AvailabilityStorageService.swift */,
 				43B2532628EDEEB500552B6C /* AvailabilityHistory.swift */,
+				438A61062AD4F956008A6E81 /* Region.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -229,6 +243,18 @@
 				4363361B28F2DC0600E373F5 /* WatchDogAnimation.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		438A60FB2AD4F3A0008A6E81 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				438A60FC2AD4F3B2008A6E81 /* DeviceApiService.swift */,
+				438A60FE2AD4F3BB008A6E81 /* DeviceDto.swift */,
+				438A61002AD4F53F008A6E81 /* DeviceRepository.swift */,
+				438A61022AD4F5D0008A6E81 /* Device.swift */,
+				438A61042AD4F68C008A6E81 /* DeviceStorageService.swift */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 		43B2532828EDF74200552B6C /* Views */ = {
@@ -381,6 +407,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4363361C28F2DC0600E373F5 /* WatchDogAnimation.swift in Sources */,
+				438A61052AD4F68C008A6E81 /* DeviceStorageService.swift in Sources */,
+				438A61012AD4F53F008A6E81 /* DeviceRepository.swift in Sources */,
+				438A61072AD4F956008A6E81 /* Region.swift in Sources */,
 				4332A3E52ACA358800CF157E /* ConfigurationView.swift in Sources */,
 				4332A3E22ACA356A00CF157E /* ConfigurationViewController.swift in Sources */,
 				4335624E28E8A1D1007D8F88 /* AvailabilityRepository.swift in Sources */,
@@ -388,6 +417,8 @@
 				4363361728F2D7FA00E373F5 /* AnimatedMessageView.swift in Sources */,
 				4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */,
 				4335624428E8A133007D8F88 /* ResultsViewController.swift in Sources */,
+				438A60FF2AD4F3BB008A6E81 /* DeviceDto.swift in Sources */,
+				438A61032AD4F5D0008A6E81 /* Device.swift in Sources */,
 				43B2532A28EDF74E00552B6C /* AvailableResultCell.swift in Sources */,
 				43B2532E28EEE76400552B6C /* CellProtocol.swift in Sources */,
 				43B2532C28EEE1BC00552B6C /* Layout+Helper.swift in Sources */,
@@ -396,6 +427,7 @@
 				4335624F28E8A1D1007D8F88 /* FulfilmentStore.swift in Sources */,
 				4335625928E9D705007D8F88 /* WatchDogInteractor.swift in Sources */,
 				4335625028E8A1D1007D8F88 /* AvailabilityApiService.swift in Sources */,
+				438A60FD2AD4F3B2008A6E81 /* DeviceApiService.swift in Sources */,
 				4335621228E8A0D6007D8F88 /* SceneDelegate.swift in Sources */,
 				4335624628E8A1C7007D8F88 /* NetworkClient.swift in Sources */,
 				4335624D28E8A1D1007D8F88 /* AvailabilityModel.swift in Sources */,
