@@ -15,6 +15,6 @@ struct FulfilmentStore: Equatable {
 
     struct FulfilmentStorePart: Equatable {
         let available: Bool
-        let model: AvailabilityModel
+        let model: String
     }
 }

@@ -8,14 +8,18 @@
 import UIKit
 
 final class HistoryViewModel {
-    private let repository = AvailabilityRepository()
+    private let availabilityRepository = AvailabilityRepository()
+    private let deviceRepository = DeviceRepository()
     private let speakInteractor = SpeakInteractor()
     private let watchDogInteractor = WatchDogInteractor(interval: 10)
     var elements: [CellDisplayModel] = []
     var reloadData: () -> Void = {}
+    var cachedDevices: [String: Device] = [:]
 
     func viewDidLoad() {
-        loadResults()
+        loadDevices { [weak self] in
+            self?.loadResults()
+        }
     }
 
     var numberOfSections: Int {
@@ -49,7 +53,7 @@ private extension HistoryViewModel {
         history.forEach { historyElement in
                 elements.append(
                     .init(
-                        title: String(describing: historyElement.model),
+                        title: cachedDevices[historyElement.model]?.description ?? historyElement.model,
                         subtitle: Strings.availableFound(
                             historyElement.date.smartFormat(),
                             at: historyElement.storeName
@@ -63,8 +67,15 @@ private extension HistoryViewModel {
     }
 
     func loadResults() {
-        repository.getAvailabilityHistory { [weak self] history in
+        availabilityRepository.getAvailabilityHistory { [weak self] history in
             self?.updateData(history: history)
+        }
+    }
+
+    func loadDevices(completion: @escaping () -> Void) {
+        deviceRepository.cachedDevices(region: .us) { [weak self] devices in
+            self?.cachedDevices = devices.reduce(into: [:]) { $0[$1.id] = $1 }
+            completion()
         }
     }
 }

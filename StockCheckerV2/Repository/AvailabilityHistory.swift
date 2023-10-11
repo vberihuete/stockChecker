@@ -8,7 +8,7 @@
 import Foundation
 
 struct AvailabilityHistory: Hashable {
-    let model: AvailabilityModel
+    let model: String
     let storeName: String
     let distance: String
     let date: Date

@@ -81,7 +81,7 @@ extension FulfilmentStoreDto {
             parts: partsAvailability.parts.map {
                 FulfilmentStore.FulfilmentStorePart(
                     available: $0.pickupDisplay == .available,
-                    model: AvailabilityModel(rawValue: $0.partNumber) ?? .notMapped
+                    model: $0.partNumber
                 )
             }
         )

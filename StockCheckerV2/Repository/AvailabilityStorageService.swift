@@ -75,20 +75,19 @@ private extension AvailabilityStorageService {
     }
 }
 struct AvailabilityHistoryStoreDto: Codable, Hashable {
-    let availableRawValue: String
+    let model: String
     let storeName: String
     let distance: String
     let date: Date
 
     func toDomain() -> AvailabilityHistory? {
-        guard let model = AvailabilityModel(rawValue: availableRawValue) else { return nil }
         return .init(model: model, storeName: storeName, distance: distance, date: date)
     }
 }
 
 extension AvailabilityHistoryStoreDto {
     init(object: AvailabilityHistory) {
-        self.availableRawValue = object.model.rawValue
+        self.model = object.model
         self.storeName = object.storeName
         self.distance = object.distance
         self.date = object.date
