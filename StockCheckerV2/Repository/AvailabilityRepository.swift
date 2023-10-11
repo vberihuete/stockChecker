@@ -9,7 +9,7 @@ import Foundation
 
 protocol AvailabilityRepositoryProtocol {
     func getAvailability(
-        models: [AvailabilityModel],
+        models: [Device],
         postCode: String,
         completion: @escaping (Result<[FulfilmentStore], NetworkError>) -> Void
     )
@@ -37,11 +37,11 @@ final class AvailabilityRepository: AvailabilityRepositoryProtocol {
     }
 
     func getAvailability(
-        models: [AvailabilityModel],
+        models: [Device],
         postCode: String,
         completion: @escaping (Result<[FulfilmentStore], NetworkError>) -> Void
     ) {
-        apiService.getAvailability(models: models.map(\.rawValue), postCode: postCode) {
+        apiService.getAvailability(models: models.map(\.id), postCode: postCode) {
             completion($0.map { $0.body.content.pickupMessage.stores.map { $0.toDomain() }} )
         }
     }

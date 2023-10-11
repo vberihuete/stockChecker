@@ -22,15 +22,17 @@ final class ResultsViewModel {
 
     var elements: [CellDisplayModel] = []
     var reloadData: () -> Void = {}
-    var notifyAvailable: (Set<AvailabilityModel>) -> Void = { _ in }
+    var notifyAvailable: (Set<Device>) -> Void = { _ in }
     var updateInfo: (String) -> Void = { _ in }
     var zipCode: String? {
         UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey)
     }
-
+    var cachedDevices: [String: Device] = [:]
     func viewDidLoad() {
-        loadResults()
-        scheduleFetch()
+        loadDevices { [weak self] in
+            self?.loadResults()
+            self?.scheduleFetch()
+        }
     }
 
     var numberOfSections: Int {
@@ -84,7 +86,7 @@ private extension ResultsViewModel {
             store.parts.forEach { part in
                 elements.append(
                     .init(
-                        title: String(describing: part.model),
+                        title: cachedDevices[part.model]?.description ?? part.model,
                         subtitle: store.storeName,
                         distance: store.storeDistance,
                         available: part.available)
@@ -108,9 +110,9 @@ private extension ResultsViewModel {
             }
         }
         guard available.isEmpty == false else { return }
-        let availableModels = available.map(\.model)
+        let availableModels = available.compactMap { cachedDevices[$0.model] }
         availableModels.forEach { model in
-            speakInteractor.speak(Strings.isAvailable(.init(describing: model)))
+            speakInteractor.speak(Strings.isAvailable(.init(describing: model.description)))
         }
         availabilityRepository.reportAvailability(historyModels: available)
         notifyAvailable(Set(availableModels))
@@ -125,9 +127,9 @@ private extension ResultsViewModel {
     }
 
     func loadResults() {
-        guard let zipCode else { return }
+        guard let zipCode, !cachedDevices.isEmpty else { return }
         availabilityRepository.getAvailability(
-            models: [.iPhone15ProMaxBlack256, .iPhone15ProMaxBlue256, .iPhone15ProMaxNatural256],
+            models: Array(cachedDevices.values), // only use the selected devices not all of them
             postCode: zipCode
         ) { [weak self, dateFormatter] result in
             guard case let .success(stores) = result else { return }
@@ -135,6 +137,15 @@ private extension ResultsViewModel {
             self?.updateInfo(Strings.lastUpdated(updatedDate))
             self?.updateData(stores: stores)
             self?.notifyAvailableIfNeeded(stores: stores)
+        }
+    }
+
+    func loadDevices(completion: @escaping () -> Void) {
+        // later customise selection of region
+        deviceRepository.cachedOrUpdatedDevices(region: .us) { [weak self] result in
+            guard case let .success(devices) =  result else { return completion() }
+            self?.cachedDevices = devices.reduce(into: [:]) { $0[$1.id] = $1 }
+            completion()
         }
     }
 }

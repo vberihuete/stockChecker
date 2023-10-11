@@ -19,7 +19,6 @@
 		4335624428E8A133007D8F88 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624328E8A133007D8F88 /* ResultsViewController.swift */; };
 		4335624628E8A1C7007D8F88 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624528E8A1C7007D8F88 /* NetworkClient.swift */; };
 		4335624C28E8A1D1007D8F88 /* FulfilmentDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */; };
-		4335624D28E8A1D1007D8F88 /* AvailabilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */; };
 		4335624E28E8A1D1007D8F88 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */; };
 		4335624F28E8A1D1007D8F88 /* FulfilmentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */; };
 		4335625028E8A1D1007D8F88 /* AvailabilityApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */; };
@@ -81,7 +80,6 @@
 		4335624328E8A133007D8F88 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		4335624528E8A1C7007D8F88 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfilmentDto.swift; sourceTree = "<group>"; };
-		4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityModel.swift; sourceTree = "<group>"; };
 		4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
 		4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfilmentStore.swift; sourceTree = "<group>"; };
 		4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityApiService.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 			children = (
 				438A60FB2AD4F3A0008A6E81 /* Devices */,
 				4335624B28E8A1D1007D8F88 /* AvailabilityApiService.swift */,
-				4335624828E8A1D0007D8F88 /* AvailabilityModel.swift */,
 				4335624928E8A1D1007D8F88 /* AvailabilityRepository.swift */,
 				4335624728E8A1D0007D8F88 /* FulfilmentDto.swift */,
 				4335624A28E8A1D1007D8F88 /* FulfilmentStore.swift */,
@@ -430,7 +427,6 @@
 				438A60FD2AD4F3B2008A6E81 /* DeviceApiService.swift in Sources */,
 				4335621228E8A0D6007D8F88 /* SceneDelegate.swift in Sources */,
 				4335624628E8A1C7007D8F88 /* NetworkClient.swift in Sources */,
-				4335624D28E8A1D1007D8F88 /* AvailabilityModel.swift in Sources */,
 				43B2532728EDEEB500552B6C /* AvailabilityHistory.swift in Sources */,
 				4363361028F1E95600E373F5 /* HistoryViewModel.swift in Sources */,
 				4335624C28E8A1D1007D8F88 /* FulfilmentDto.swift in Sources */,

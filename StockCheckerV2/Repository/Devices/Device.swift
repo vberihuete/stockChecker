@@ -20,4 +20,8 @@ struct Device: Hashable {
     let name: String
     let color: String
     let capacity: String
+
+    var description: String {
+        "\(name) \(color) \(capacity)"
+    }
 }
