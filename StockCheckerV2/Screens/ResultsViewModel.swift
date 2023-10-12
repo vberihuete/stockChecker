@@ -27,6 +27,13 @@ final class ResultsViewModel {
     var zipCode: String? {
         UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey)
     }
+
+    var observedDevices: [Device] {
+        let keys = UserDefaults.standard.array(forKey: DeviceSelectionViewModel.selectedDevicesKey) as? [String] ?? []
+        let selected = keys.compactMap { cachedDevices[$0] }
+        return selected.isEmpty ? Array(cachedDevices.values) : selected
+    }
+
     var cachedDevices: [String: Device] = [:]
     func viewDidLoad() {
         loadDevices { [weak self] in
@@ -129,7 +136,7 @@ private extension ResultsViewModel {
     func loadResults() {
         guard let zipCode, !cachedDevices.isEmpty else { return }
         availabilityRepository.getAvailability(
-            models: Array(cachedDevices.values), // only use the selected devices not all of them
+            models: observedDevices,
             postCode: zipCode
         ) { [weak self, dateFormatter] result in
             guard case let .success(stores) = result else { return }

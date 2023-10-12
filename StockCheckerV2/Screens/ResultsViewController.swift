@@ -25,10 +25,12 @@ class ResultsViewController: UIViewController {
         // https://www.apple.com/uk/shop/buy-iphone/iphone-14-pro/6.7-inch-display-128gb-deep-purple
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         subscribeToNotification()
         let zipCode = UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey)
-        if zipCode?.isEmpty == true {
+        let selected = UserDefaults.standard.array(forKey: DeviceSelectionViewModel.selectedDevicesKey) as? [String]
+        if zipCode?.isEmpty == true || selected?.isEmpty == true {
             settingsButtonAction()
         }
     }

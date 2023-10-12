@@ -25,6 +25,7 @@
 		4335625528E9CB16007D8F88 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625428E9CB16007D8F88 /* ResultsViewModel.swift */; };
 		4335625928E9D705007D8F88 /* WatchDogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625828E9D705007D8F88 /* WatchDogInteractor.swift */; };
 		4335625B28E9D924007D8F88 /* SpeakInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335625A28E9D924007D8F88 /* SpeakInteractor.swift */; };
+		4346DE5A2AD76F0C00C795C3 /* DeviceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346DE592AD76F0C00C795C3 /* DeviceSelectionView.swift */; };
 		4363360C28F182C200E373F5 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363360B28F182C200E373F5 /* InfoView.swift */; };
 		4363360E28F18B1300E373F5 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363360D28F18B1300E373F5 /* HistoryViewController.swift */; };
 		4363361028F1E95600E373F5 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363360F28F1E95600E373F5 /* HistoryViewModel.swift */; };
@@ -86,6 +87,7 @@
 		4335625428E9CB16007D8F88 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
 		4335625828E9D705007D8F88 /* WatchDogInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDogInteractor.swift; sourceTree = "<group>"; };
 		4335625A28E9D924007D8F88 /* SpeakInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakInteractor.swift; sourceTree = "<group>"; };
+		4346DE592AD76F0C00C795C3 /* DeviceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectionView.swift; sourceTree = "<group>"; };
 		4363360B28F182C200E373F5 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		4363360D28F18B1300E373F5 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4363360F28F1E95600E373F5 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				4332A3E12ACA356A00CF157E /* ConfigurationViewController.swift */,
 				4332A3E42ACA358800CF157E /* ConfigurationView.swift */,
+				4346DE592AD76F0C00C795C3 /* DeviceSelectionView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4346DE5A2AD76F0C00C795C3 /* DeviceSelectionView.swift in Sources */,
 				4363361C28F2DC0600E373F5 /* WatchDogAnimation.swift in Sources */,
 				438A61052AD4F68C008A6E81 /* DeviceStorageService.swift in Sources */,
 				438A61012AD4F53F008A6E81 /* DeviceRepository.swift in Sources */,
