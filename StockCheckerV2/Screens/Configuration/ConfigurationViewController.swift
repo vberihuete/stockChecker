@@ -22,5 +22,10 @@ class ConfigurationViewController: UIViewController {
         hostingController.view.frame = view.bounds
 
         hostingController.didMove(toParent: self)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
 }
