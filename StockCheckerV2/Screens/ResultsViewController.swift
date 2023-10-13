@@ -65,18 +65,23 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.toggleWatchDog()
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        infoView
+    }
 }
 // MARK: - Private methods
 private extension ResultsViewController {
     func setupViews() {
         setupNavigationBar()
         view.addSubview(tableView)
-        view.addSubview(infoView)
+//        view.addSubview(infoView)
         view.addSubview(emptyMessageView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AvailableResultCell.self, forCellReuseIdentifier: AvailableResultCell.identifier)
-        tableView.contentInset = .init(top: 30, left: 0, bottom: 0, right: 0)
+//        tableView.contentInsetAdjustmentBehavior = .never
+//        tableView.contentInset = .init(top: 30, left: 0, bottom: 0, right: 0)
         emptyMessageView.update(
             animationName: WatchDogAnimation.walkingDog,
             title: "We are looking for you desired models",
@@ -103,10 +108,10 @@ private extension ResultsViewController {
 
     func setupConstraints() {
         tableView.pinToSuperview()
-        infoView.translatesAutoresizingMaskIntoConstraints = false
-        infoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        infoView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-        infoView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+//        infoView.translatesAutoresizingMaskIntoConstraints = false
+//        infoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+//        infoView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+//        infoView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
         emptyMessageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [
@@ -122,7 +127,7 @@ private extension ResultsViewController {
             DispatchQueue.main.async {
                 tableView.reloadData()
                 tableView.isHidden = viewModel.elements.isEmpty
-                infoView.isHidden = viewModel.elements.isEmpty
+//                infoView.isHidden = viewModel.elements.isEmpty
                 emptyMessageView.isHidden = !viewModel.elements.isEmpty
             }
         }

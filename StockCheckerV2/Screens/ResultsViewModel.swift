@@ -63,14 +63,19 @@ final class ResultsViewModel {
     func toggleWatchDog() {
         if watchDogInteractor.isActive {
             watchDogInteractor.stop()
+            speakInteractor.stop()
             speakInteractor.speak(Strings.stoppedWatchDog)
+            updateInfo(Strings.watchDogIsStopped)
         } else {
+            speakInteractor.stop()
             watchDogInteractor.start()
             speakInteractor.speak(Strings.startedWatchDog)
+            updateInfo(Strings.watchDogIsSearching)
         }
     }
 
     func configurationChanged() {
+        speakInteractor.stop()
         loadResults()
     }
 }
@@ -82,10 +87,12 @@ private extension ResultsViewModel {
             "\(value) is available"
         }
         static func lastUpdated(_ value: String) -> String {
-            "Last updated: \(value)"
+            "Last updated: \(value) - tap any row to stop yes aha value random"
         }
         static var stoppedWatchDog: String = "Stopped watch dog"
         static var startedWatchDog: String = "Started watch dog"
+        static var watchDogIsStopped = "Watch dog is not searching - tap any row to search"
+        static var watchDogIsSearching = "Watch dog is searching - tap any row to stop"
     }
     func updateData(stores: [FulfilmentStore]) {
         elements = []
