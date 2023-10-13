@@ -39,6 +39,12 @@ final class HistoryViewModel {
             distanceTitle: element.distance
         )
     }
+
+    func clearFound() {
+        availabilityRepository.clearAvailabilityHistory { [weak self] in
+            self?.loadResults()
+        }
+    }
 }
 
 // MARK: private methods

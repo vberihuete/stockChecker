@@ -40,6 +40,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
 
+        cell.selectionStyle = .none
         cell.update(model: model)
         return cell
     }
@@ -64,6 +65,13 @@ private extension HistoryViewController {
     func setupNavigationBar() {
         navigationItem.title = "Found history"
         navigationController?.navigationBar.prefersLargeTitles = true
+        if let trashImage = UIImage(systemName: "trash") {
+            let trashButton = UIBarButtonItem.imageButton(image: trashImage, color: .label) { [weak self] in
+                self?.trashButtonAction()
+            }
+            navigationItem.rightBarButtonItems = [trashButton]
+        }
+
     }
 
     func setupConstraints() {
@@ -86,5 +94,23 @@ private extension HistoryViewController {
                     emptyMessageView.isHidden = !viewModel.elements.isEmpty
             }
         }
+    }
+
+    func trashButtonAction() {
+        let alertController = UIAlertController(
+            title: "Confirmation",
+            message: "Are you sure you want to erase found history?",
+            preferredStyle: .actionSheet
+        )
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak self] _ in
+            self?.viewModel.clearFound()
+        }
+        alertController.addAction(confirmAction)
+
+        present(alertController, animated: true, completion: nil)
     }
 }
