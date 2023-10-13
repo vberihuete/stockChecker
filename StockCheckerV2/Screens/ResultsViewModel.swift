@@ -87,7 +87,7 @@ private extension ResultsViewModel {
             "\(value) is available"
         }
         static func lastUpdated(_ value: String) -> String {
-            "Last updated: \(value) - tap any row to stop yes aha value random"
+            "Last updated: \(value)"
         }
         static var stoppedWatchDog: String = "Stopped watch dog"
         static var startedWatchDog: String = "Started watch dog"
