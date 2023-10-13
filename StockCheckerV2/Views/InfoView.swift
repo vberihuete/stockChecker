@@ -29,14 +29,20 @@ class InfoView: UIStackView {
 
 private extension InfoView {
     func setupViews() {
-        titleLabel.font = .systemFont(ofSize: 14)
+        titleLabel.font = .systemFont(ofSize: 12)
         titleLabel.numberOfLines = 0
+        titleLabel.textColor = .gray
         backgroundColor = .systemBackground
 
         addArrangedSubview(titleLabel)
     }
 
     func setupConstraints() {
-        titleLabel.pinToSuperview()
+        [
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ].forEach { $0.isActive = true }
     }
 }
