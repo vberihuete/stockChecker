@@ -77,7 +77,9 @@ final class ResultsViewModel {
     func configurationChanged() {
         speakInteractor.stop()
         updateData(stores: [])
-        loadResults()
+        loadDevices { [weak self] in
+            self?.loadResults()
+        }
     }
 }
 
