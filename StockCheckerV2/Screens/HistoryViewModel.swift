@@ -79,7 +79,8 @@ private extension HistoryViewModel {
     }
 
     func loadDevices(completion: @escaping () -> Void) {
-        deviceRepository.cachedDevices(region: .us) { [weak self] devices in
+        let region = RegionSelectionView.currentSelectedRegion()
+        deviceRepository.cachedDevices(region: region) { [weak self] devices in
             self?.cachedDevices = devices.reduce(into: [:]) { $0[$1.id] = $1 }
             completion()
         }

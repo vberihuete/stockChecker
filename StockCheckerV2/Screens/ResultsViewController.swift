@@ -77,6 +77,7 @@ private extension ResultsViewController {
         setupNavigationBar()
         view.addSubview(tableView)
         view.addSubview(emptyMessageView)
+        view.backgroundColor = .systemBackground
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AvailableResultCell.self, forCellReuseIdentifier: AvailableResultCell.identifier)

@@ -31,14 +31,14 @@ final class AvailabilityApiService: AvailabilityApiServiceProtocol {
             "pl": "true",
             "mts.0": "regular",
             "mts.1": "compact",
-            "location": postCode,
-//            "parts.0": model
+            "location": postCode
         ]
         models.enumerated().forEach { index, model in
             params["parts.\(index)"] = model
         }
+        let region = RegionSelectionView.currentSelectedRegion().rawValue.lowercased()
         networkClient.request(
-            url: "https://www.apple.com/us/shop/fulfillment-messages",
+            url: "https://www.apple.com/\(region)/shop/fulfillment-messages",
             method: .get,
             params: .query(params),
             completion: completion

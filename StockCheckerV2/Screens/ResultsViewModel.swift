@@ -76,6 +76,7 @@ final class ResultsViewModel {
 
     func configurationChanged() {
         speakInteractor.stop()
+        updateData(stores: [])
         loadResults()
     }
 }
@@ -155,8 +156,8 @@ private extension ResultsViewModel {
     }
 
     func loadDevices(completion: @escaping () -> Void) {
-        // later customise selection of region
-        deviceRepository.cachedOrUpdatedDevices(region: .us) { [weak self] result in
+        let region = RegionSelectionView.currentSelectedRegion()
+        deviceRepository.cachedOrUpdatedDevices(region: region) { [weak self] result in
             guard case let .success(devices) =  result else { return completion() }
             self?.cachedDevices = devices.reduce(into: [:]) { $0[$1.id] = $1 }
             completion()

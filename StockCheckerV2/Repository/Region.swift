@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum Region {
-    case us, uk
+enum Region: String, CaseIterable {
+    case us = "US", uk = "UK"
 }
