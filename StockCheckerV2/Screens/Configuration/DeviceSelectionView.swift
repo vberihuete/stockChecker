@@ -14,11 +14,12 @@ class DeviceSelectionViewModel: ObservableObject {
     private let deviceRepository = DeviceRepository()
 
     func fetchDevices() {
-        deviceRepository.cachedDevices(region: .us) { [weak self] devices in
+        let region = RegionSelectionView.currentSelectedRegion()
+        deviceRepository.cachedDevices(region: region) { [weak self] devices in
             self?.devices = devices
             self?.updateSelected()
             let cachedDevices = devices
-            self?.deviceRepository.getUpdatedDevices(region: .us) { result in
+            self?.deviceRepository.getUpdatedDevices(region: region) { result in
                 guard case let .success(devices) = result else { return }
                 self?.devices = devices
                 if devices != cachedDevices {
@@ -26,6 +27,16 @@ class DeviceSelectionViewModel: ObservableObject {
                 }
             }
         }
+    }
+
+    func onAppear() {
+        fetchDevices()
+        subscribeToNotification()
+    }
+
+    func onDisappear() {
+        saveSelectedDevices()
+        unsubscribeToNotification()
     }
 
     func updateSelected() {
@@ -42,6 +53,25 @@ class DeviceSelectionViewModel: ObservableObject {
     func toggleSelection(device: Device) {
         guard selectedDevices.removeValue(forKey: device.id) == nil else { return }
         selectedDevices[device.id] = device
+    }
+
+    private func subscribeToNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleRegionChange),
+            name: .regionChanged,
+            object: nil
+        )
+    }
+
+    private func unsubscribeToNotification() {
+        NotificationCenter.default.removeObserver(self, name: .regionChanged, object: nil)
+    }
+
+    @objc private func handleRegionChange() {
+        selectedDevices = [:]
+        saveSelectedDevices()
+        fetchDevices()
     }
 }
 
@@ -83,10 +113,10 @@ struct DeviceSelectionView: View {
             Spacer()
         }
         .onAppear {
-            viewModel.fetchDevices()
+            viewModel.onAppear()
         }
         .onDisappear {
-            viewModel.saveSelectedDevices()
+            viewModel.onDisappear()
         }
     }
 }

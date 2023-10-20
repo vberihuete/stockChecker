@@ -9,12 +9,15 @@ import SwiftUI
 
 extension Notification.Name {
     static let configurationTextChanged = Notification.Name("ConfigurationTextChanged")
+    static let regionChanged = Notification.Name("WD.RegionChanged")
 }
 
 
 struct ConfigurationView: View {
     static let zipCodeKey = "configuration.view.zipcode"
+    @State private var selectedRegion: String = ""
     @State private var configurationText: String = ""
+    @State private var showRegionSelection: Bool = true
 
     var body: some View {
         NavigationView {
@@ -26,6 +29,8 @@ struct ConfigurationView: View {
                         .padding(.vertical)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .textContentType(.postalCode)
+                    RegionSelectionView(isPresented: $showRegionSelection)
+                    Spacer(minLength: 20)
                     Text("Select from the list bellow which devices you want the watch dog to search")
                         .font(.headline)
                     DeviceSelectionView()
@@ -39,6 +44,7 @@ struct ConfigurationView: View {
                 saveConfiguration()
             }
             .onAppear {
+                selectedRegion = RegionSelectionView.currentSelectedRegion().rawValue
                 loadConfiguration()
             }
             .navigationTitle("Configuration")
