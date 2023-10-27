@@ -8,5 +8,5 @@
 import Foundation
 
 enum Region: String, CaseIterable {
-    case us = "US", uk = "UK"
+    case us = "US", uk = "UK", ca = "CA"
 }

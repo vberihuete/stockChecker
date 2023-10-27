@@ -11,6 +11,7 @@ struct DeviceContainerDto: Codable {
     struct RegionDto: Codable {
         let uk: [DeviceDto]
         let us: [DeviceDto]
+        let ca: [DeviceDto]
     }
     let region: RegionDto
 }
@@ -31,7 +32,11 @@ extension DeviceDto {
 
 extension DeviceContainerDto.RegionDto {
     func toDomain() -> DeviceContainer.Region {
-        .init(uk: uk.map { $0.toDomain() }, us: us.map { $0.toDomain() })
+        .init(
+            uk: uk.map { $0.toDomain() },
+            us: us.map { $0.toDomain() },
+            ca: ca.map { $0.toDomain() }
+        )
     }
 }
 
