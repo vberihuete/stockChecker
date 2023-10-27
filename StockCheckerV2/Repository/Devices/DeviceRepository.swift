@@ -69,6 +69,8 @@ private extension DeviceContainer {
             return self.region.us
         case .uk:
             return self.region.uk
+        case .ca:
+            return self.region.ca
         }
     }
 }

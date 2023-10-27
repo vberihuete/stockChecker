@@ -11,6 +11,7 @@ struct DeviceContainer: Hashable {
     struct Region: Hashable {
         let uk: [Device]
         let us: [Device]
+        let ca: [Device]
     }
     let region: Region
 }
