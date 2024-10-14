@@ -46,6 +46,7 @@
 		43B2532C28EEE1BC00552B6C /* Layout+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532B28EEE1BC00552B6C /* Layout+Helper.swift */; };
 		43B2532E28EEE76400552B6C /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2532D28EEE76400552B6C /* CellProtocol.swift */; };
 		43C171482AE19E4300386B94 /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C171472AE19E4300386B94 /* RegionSelectionView.swift */; };
+		43F4C6E42CBDB55100741206 /* SoundDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4C6E32CBDB55100741206 /* SoundDistanceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		43B2532B28EEE1BC00552B6C /* Layout+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+Helper.swift"; sourceTree = "<group>"; };
 		43B2532D28EEE76400552B6C /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		43C171472AE19E4300386B94 /* RegionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionView.swift; sourceTree = "<group>"; };
+		43F4C6E32CBDB55100741206 /* SoundDistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDistanceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				4332A3E42ACA358800CF157E /* ConfigurationView.swift */,
 				4346DE592AD76F0C00C795C3 /* DeviceSelectionView.swift */,
 				43C171472AE19E4300386B94 /* RegionSelectionView.swift */,
+				43F4C6E32CBDB55100741206 /* SoundDistanceView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				438A61032AD4F5D0008A6E81 /* Device.swift in Sources */,
 				43B2532A28EDF74E00552B6C /* AvailableResultCell.swift in Sources */,
 				43B2532E28EEE76400552B6C /* CellProtocol.swift in Sources */,
+				43F4C6E42CBDB55100741206 /* SoundDistanceView.swift in Sources */,
 				43B2532C28EEE1BC00552B6C /* Layout+Helper.swift in Sources */,
 				4335621028E8A0D6007D8F88 /* AppDelegate.swift in Sources */,
 				43B23B2528EB97FA00552B6C /* AvailabilityStorageService.swift in Sources */,
