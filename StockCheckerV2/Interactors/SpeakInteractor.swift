@@ -10,6 +10,7 @@ import AVFoundation
 final class SpeakInteractor {
     private static let synthesizer = AVSpeechSynthesizer()
     func speak(_ value: String) {
+        guard !UserDefaults.standard.bool(forKey: SoundDistanceView.soundOffKey) else { return }
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setCategory(.playback, options: .mixWithOthers)
         let utterance = AVSpeechUtterance(string: value)

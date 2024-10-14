@@ -31,6 +31,8 @@ struct ConfigurationView: View {
                         .textContentType(.postalCode)
                     RegionSelectionView(isPresented: $showRegionSelection)
                     Spacer(minLength: 20)
+                    SoundDistanceView()
+                    Spacer(minLength: 20)
                     Text("Select from the list bellow which devices you want the watch dog to search")
                         .font(.headline)
                     DeviceSelectionView()

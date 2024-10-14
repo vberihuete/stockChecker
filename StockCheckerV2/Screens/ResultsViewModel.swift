@@ -98,9 +98,13 @@ private extension ResultsViewModel {
         static var watchDogIsSearching = "Watch dog is searching - tap any row to stop"
     }
     func updateData(stores: [FulfilmentStore]) {
+        let maxDistance = UserDefaults.standard.value(
+            forKey: SoundDistanceView.distanceKey
+        ) as? Double ?? SoundDistanceView.maxDistance
         elements = []
         stores.forEach { store in
             store.parts.forEach { part in
+                guard (getStoreDistance(value: store.storeDistance) <= maxDistance && part.available) || !part.available else { return }
                 elements.append(
                     .init(
                         title: cachedDevices[part.model]?.description ?? part.model,
@@ -164,6 +168,10 @@ private extension ResultsViewModel {
             self?.cachedDevices = devices.reduce(into: [:]) { $0[$1.id] = $1 }
             completion()
         }
+    }
+
+    func getStoreDistance(value: String) -> Double {
+        Double(value.split(separator: " ")[0]) ?? SoundDistanceView.minDistance
     }
 }
 
