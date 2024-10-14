@@ -98,9 +98,6 @@ private extension ResultsViewModel {
         static var watchDogIsSearching = "Watch dog is searching - tap any row to stop"
     }
     func updateData(stores: [FulfilmentStore]) {
-        let maxDistance = UserDefaults.standard.value(
-            forKey: SoundDistanceView.distanceKey
-        ) as? Double ?? SoundDistanceView.maxDistance
         elements = []
         stores.forEach { store in
             store.parts.forEach { part in
@@ -126,7 +123,7 @@ private extension ResultsViewModel {
     func notifyAvailableIfNeeded(stores: [FulfilmentStore]) {
         let available: [AvailabilityHistory] = stores.flatMap { store in
             store.parts.compactMap { part in
-                guard part.available else { return nil }
+                guard part.available, getStoreDistance(value: store.storeDistance) <= maxDistance else { return nil }
                 return .init(model: part.model, storeName: store.storeName, distance: store.storeDistance, date: .init())
             }
         }
@@ -173,6 +170,13 @@ private extension ResultsViewModel {
     func getStoreDistance(value: String) -> Double {
         Double(value.split(separator: " ")[0]) ?? SoundDistanceView.minDistance
     }
+
+    var maxDistance: Double {
+        return UserDefaults.standard.value(
+            forKey: SoundDistanceView.distanceKey
+        ) as? Double ?? SoundDistanceView.maxDistance
+    }
+
 }
 
 
