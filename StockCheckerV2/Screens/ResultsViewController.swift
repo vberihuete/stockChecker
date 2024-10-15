@@ -28,9 +28,9 @@ class ResultsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         subscribeToNotification()
-        let zipCode = UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey)
-        let selected = UserDefaults.standard.array(forKey: DeviceSelectionViewModel.selectedDevicesKey) as? [String]
-        if zipCode?.isEmpty == true || selected?.isEmpty == true {
+        let zipCode = UserDefaults.standard.string(forKey: ConfigurationView.zipCodeKey) ?? ""
+        let selected = (UserDefaults.standard.array(forKey: DeviceSelectionViewModel.selectedDevicesKey) as? [String]) ?? []
+        if zipCode.isEmpty == true || selected.isEmpty == true {
             settingsButtonAction()
         }
     }
