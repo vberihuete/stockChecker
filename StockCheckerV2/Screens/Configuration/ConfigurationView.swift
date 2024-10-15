@@ -51,6 +51,7 @@ struct ConfigurationView: View {
             }
             .navigationTitle("Configuration")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     private func saveConfiguration() {

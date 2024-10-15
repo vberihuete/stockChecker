@@ -20,6 +20,13 @@ class ConfigurationViewController: UIViewController {
 
         // Adjust the frame as needed
         hostingController.view.frame = view.bounds
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        [
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ].forEach { $0.isActive = true }
 
         hostingController.didMove(toParent: self)
         navigationController?.setNavigationBarHidden(true, animated: false)
