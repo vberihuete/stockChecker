@@ -3,7 +3,7 @@ Make your device a data center, no subscriptions or anything just start checking
 
 You can now provide your zip code.
 
-## It works in the US, UK and Canada
+## It works in the US, UK and Canada - Enjoy!
 
 https://github.com/vberihuete/stockChecker/assets/11696828/b2691270-8fb7-496c-949e-cf85f700d737
 
